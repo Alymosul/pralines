@@ -16,7 +16,7 @@ use Faker\Generator as Faker;
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Client::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'name' => $faker->company,
         'email' => $faker->unique()->safeEmail,
         'address' => $faker->address,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
