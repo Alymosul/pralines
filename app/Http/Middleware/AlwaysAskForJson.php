@@ -15,9 +15,8 @@ class AlwaysAskForJson
      */
     public function handle($request, Closure $next)
     {
-        $request->headers->set('content-type', 'application/json');
         $request->headers->set('accept', 'application/json');
-
+        
         return $next($request);
     }
 }
