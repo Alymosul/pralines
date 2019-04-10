@@ -20,6 +20,7 @@ class CreateProjectsTable extends Migration
             $table->timestamps();
 
             $table->foreign('client_id')->references('id')->on('clients');
+            $table->unique(['name', 'client_id']);
         });
     }
 
