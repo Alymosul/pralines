@@ -55,32 +55,4 @@ class AddProjectTest extends TestCase
             'message' => 'Unauthenticated.'
         ]);
     }
-
-    /** @test */
-    function a_client_cannot_add_a_project_with_the_name_that_is_already_taken()
-    {
-        $client = factory(Client::class)->create();
-
-        $existingProject = factory(Project::class)->create(['client_id' => $client->id]);
-
-        $this->actingAs($client);
-
-        $response = $this->post($this->endpoint, [
-            'name' => $existingProject->name
-        ]);
-
-        $numberOfProjectsFromDBWithThatName = Project::where('name', $existingProject->name)->count();
-        $this->assertEquals(1, $numberOfProjectsFromDBWithThatName);
-
-        $response->assertStatus(422);
-
-        $response->assertJson([
-            'message' => 'The given data was invalid.',
-            'errors' => [
-                'name' => [
-                    'The name has already been taken.'
-                ]
-            ]
-        ]);
-    }
 }
