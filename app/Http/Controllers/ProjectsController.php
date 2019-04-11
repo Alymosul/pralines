@@ -20,7 +20,7 @@ class ProjectsController extends Controller
                 'required',
                 'string',
                 'min:2',
-                Rule::unique('projects')->where('client_id', Auth::id())
+                Rule::unique('projects')->where('client_id', $clientId)
             ]
         ]);
 
