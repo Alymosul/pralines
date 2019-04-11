@@ -6,13 +6,19 @@ use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Validation\Rule;
 
 class ProjectsController extends Controller
 {
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'string|min:2',
+            'name' => [
+                'required',
+                'string',
+                'min:2',
+                Rule::unique('projects')->where('client_id', Auth::id())
+            ]
         ]);
 
         $clientId = Auth::id();
