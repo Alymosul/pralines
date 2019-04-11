@@ -13,6 +13,8 @@ class ProjectsController extends Controller
 {
     public function store(Request $request)
     {
+        $clientId = Auth::id();
+
         $this->validate($request, [
             'name' => [
                 'required',
@@ -21,8 +23,6 @@ class ProjectsController extends Controller
                 Rule::unique('projects')->where('client_id', Auth::id())
             ]
         ]);
-
-        $clientId = Auth::id();
 
         $project = Project::create([
             'name' => $request->get('name'),
