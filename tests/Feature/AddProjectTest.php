@@ -11,7 +11,7 @@ class AddProjectTest extends TestCase
 {
     use RefreshDatabase;
 
-    private $endpoint = 'api/projects';
+    private $endpoint = 'api/cool/projects';
 
     /** @test */
     function a_client_can_add_a_project()
