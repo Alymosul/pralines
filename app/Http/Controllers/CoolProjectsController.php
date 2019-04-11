@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Actions\ActionBus;
 use App\Actions\AddProjectAction;
-use App\Validators\AddProjectValidator;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
