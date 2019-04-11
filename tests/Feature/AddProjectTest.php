@@ -11,6 +11,8 @@ class AddProjectTest extends TestCase
 {
     use RefreshDatabase;
 
+    private $endpoint = 'api/projects';
+
     /** @test */
     function a_client_can_add_a_project()
     {
@@ -21,7 +23,7 @@ class AddProjectTest extends TestCase
 
         $this->actingAs($client);
 
-        $response = $this->post('api/projects', [
+        $response = $this->post($this->endpoint, [
             'name' => $project->name,
         ]);
 
@@ -42,7 +44,7 @@ class AddProjectTest extends TestCase
     {
         $project = factory(Project::class)->make();
 
-        $response = $this->post('api/projects', [
+        $response = $this->post($this->endpoint, [
             'name' => 'dummyProject',
         ]);
 
@@ -63,7 +65,7 @@ class AddProjectTest extends TestCase
 
         $this->actingAs($client);
 
-        $response = $this->post('api/projects', [
+        $response = $this->post($this->endpoint, [
             'name' => $existingProject->name
         ]);
 
