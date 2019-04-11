@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProjectResource;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,11 +29,8 @@ class ProjectsController extends Controller
             'client_id' => $clientId
         ]);
 
-        return Response::json([
-            'data' => [
-                'name' => $project->name,
-                'client_id' => $project->client_id
-            ]
-        ], 201);
+        $data = new ProjectResource($project);
+
+        return Response::json($data, 201);
     }
 }
