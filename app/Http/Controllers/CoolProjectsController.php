@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\ActionBus;
 use App\Actions\AddProjectAction;
+use App\Validators\AddProjectValidator;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
@@ -27,8 +28,8 @@ class CoolProjectsController extends Controller
     {
         $action = new AddProjectAction($request->get('name'), $this->authGuard->id());
 
-        $result = $this->actionBus->trigger($action);
+        $projectResource = $this->actionBus->trigger($action);
 
-        return $this->response->json();
+        return $this->response->json($projectResource, 201);
     }
 }

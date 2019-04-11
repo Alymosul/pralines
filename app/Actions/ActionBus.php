@@ -28,6 +28,6 @@ class ActionBus
 
         $actionHandlerInstance = $this->container->make($handlerClassName);
 
-        return $actionHandlerInstance->handle();
+        return $actionHandlerInstance->handle($action);
     }
 }

@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('projects', 'ProjectsController@store')->middleware('auth:api')->name('createProject');
+
+Route::post('cool/projects', 'CoolProjectsController@store')->middleware('auth:api')->name('createCoolProject');
